@@ -23,8 +23,14 @@ func _process(delta: float):
 		# actually get variable (var pos ...) from Logo.gd
 		$Logo.pos.x = 0
 		print($Logo.speed)
-		
-	   Input.is_action_pressed("left")
-		
 	
-	
+
+
+func _on_area_2d_body_entered(body):
+	print('entered')
+	print(body)
+
+
+func _on_area_2d_body_exited(body):
+	print('exited')
+	print(body)

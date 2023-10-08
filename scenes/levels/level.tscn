@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://xyqg1sl0cice"]
+[gd_scene load_steps=11 format=3 uid="uid://xyqg1sl0cice"]
 
 [ext_resource type="Script" path="res://scenes/levels/level.gd" id="1_j7yls"]
 [ext_resource type="Texture2D" uid="uid://hkpi2g5hj7ig" path="res://icon.svg" id="1_p42im"]
@@ -6,14 +6,22 @@
 [ext_resource type="Script" path="res://scenes/Logo.gd" id="3_cybew"]
 [ext_resource type="PackedScene" uid="uid://dhjt6pnljuyep" path="res://scenes/player/player.tscn" id="3_hqa2t"]
 [ext_resource type="PackedScene" uid="uid://tkd8mta8mvug" path="res://scenes/objects/bed.tscn" id="4_rkxwp"]
+[ext_resource type="PackedScene" uid="uid://cql2u4cg6c6ib" path="res://scenes/objects/billboard.tscn" id="7_epvh6"]
+[ext_resource type="PackedScene" uid="uid://dids42ibg40kn" path="res://scenes/enemies/drone.tscn" id="8_5b3q3"]
+[ext_resource type="Texture2D" uid="uid://5w5jy8e7niur" path="res://resources/graphics/objects/gate.png" id="9_bj5a5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uvnwn"]
+size = Vector2(793.5, 179.5)
 
 [node name="Level" type="Node2D"]
+position = Vector2(100, 466)
 script = ExtResource("1_j7yls")
 
 [node name="Bed" parent="." instance=ExtResource("4_rkxwp")]
-position = Vector2(62, 854)
+position = Vector2(1441, 335)
 
 [node name="Logo" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(114, 96)
 scale = Vector2(0.992696, 1.00461)
 texture = ExtResource("1_p42im")
@@ -21,8 +29,41 @@ region_rect = Rect2(0, 0, 128, 128)
 script = ExtResource("3_cybew")
 
 [node name="Car" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(535, 433)
 scale = Vector2(0.992696, 1.00461)
 texture = ExtResource("2_mmuhp")
 
 [node name="Player" parent="." instance=ExtResource("3_hqa2t")]
+position = Vector2(650, 28)
+
+[node name="Target" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Billboard" parent="." instance=ExtResource("7_epvh6")]
+position = Vector2(172, 616)
+rotation = 0.47822
+scale = Vector2(0.992696, 1.00461)
+
+[node name="Drone" parent="." instance=ExtResource("8_5b3q3")]
+position = Vector2(123, 133)
+rotation = 0.47822
+scale = Vector2(0.992696, 1.00461)
+
+[node name="Gate" type="StaticBody2D" parent="."]
+
+[node name="Gate" type="Sprite2D" parent="Gate"]
+position = Vector2(577, -1046)
+texture = ExtResource("9_bj5a5")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Gate"]
+polygon = PackedVector2Array(1042, -406, 1054, -260, 1919, -254, 2021, -311, 2116, -400, 2129, -1847, -862, -1835, -836, -489, -766, -349, -665, -285, -576, -285, 205, -273, 218, -417)
+
+[node name="Area2D" type="Area2D" parent="Gate"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Gate/Area2D"]
+position = Vector2(628, -364.25)
+shape = SubResource("RectangleShape2D_uvnwn")
+
+[connection signal="body_entered" from="Gate/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Gate/Area2D" to="." method="_on_area_2d_body_exited"]
