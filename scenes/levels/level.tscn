@@ -1,69 +1,66 @@
 [gd_scene load_steps=11 format=3 uid="uid://xyqg1sl0cice"]
 
 [ext_resource type="Script" path="res://scenes/levels/level.gd" id="1_j7yls"]
-[ext_resource type="Texture2D" uid="uid://hkpi2g5hj7ig" path="res://icon.svg" id="1_p42im"]
-[ext_resource type="Texture2D" uid="uid://c5ymxe6lok68p" path="res://resources/graphics/car/main.png" id="2_mmuhp"]
-[ext_resource type="Script" path="res://scenes/Logo.gd" id="3_cybew"]
+[ext_resource type="Texture2D" uid="uid://d282lml6y5i1y" path="res://resources/graphics/ground/stones.png" id="2_tfonv"]
 [ext_resource type="PackedScene" uid="uid://dhjt6pnljuyep" path="res://scenes/player/player.tscn" id="3_hqa2t"]
-[ext_resource type="PackedScene" uid="uid://tkd8mta8mvug" path="res://scenes/objects/bed.tscn" id="4_rkxwp"]
-[ext_resource type="PackedScene" uid="uid://cql2u4cg6c6ib" path="res://scenes/objects/billboard.tscn" id="7_epvh6"]
-[ext_resource type="PackedScene" uid="uid://dids42ibg40kn" path="res://scenes/enemies/drone.tscn" id="8_5b3q3"]
-[ext_resource type="Texture2D" uid="uid://5w5jy8e7niur" path="res://resources/graphics/objects/gate.png" id="9_bj5a5"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_uvnwn"]
-size = Vector2(793.5, 179.5)
+[ext_resource type="Texture2D" uid="uid://bqk6eh8xovjxu" path="res://resources/graphics/decals/dirt_patch.png" id="3_sn2uk"]
+[ext_resource type="PackedScene" uid="uid://ocvuhg6nqsqq" path="res://scenes/objects/gate.tscn" id="3_u10y8"]
+[ext_resource type="Texture2D" uid="uid://b5mokpoi67lih" path="res://resources/graphics/decals/moss/moss_1.png" id="4_vgmvm"]
+[ext_resource type="Texture2D" uid="uid://bitb3bs8uk0j4" path="res://resources/graphics/decals/moss/moss_3.png" id="5_geevg"]
+[ext_resource type="Texture2D" uid="uid://cq018rqavhelj" path="res://resources/graphics/decals/moss/moss_2.png" id="6_jtdqy"]
+[ext_resource type="Texture2D" uid="uid://posgcypptcm0" path="res://resources/graphics/decals/moss/moss_4.png" id="7_bo8gy"]
+[ext_resource type="Texture2D" uid="uid://b7fatsknewxt8" path="res://resources/graphics/decals/moss/moss_5.png" id="8_bgm27"]
 
 [node name="Level" type="Node2D"]
-position = Vector2(100, 466)
 script = ExtResource("1_j7yls")
 
-[node name="Bed" parent="." instance=ExtResource("4_rkxwp")]
-position = Vector2(1441, 335)
+[node name="Ground" type="Node2D" parent="."]
 
-[node name="Logo" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(114, 96)
-scale = Vector2(0.992696, 1.00461)
-texture = ExtResource("1_p42im")
-region_rect = Rect2(0, 0, 128, 128)
-script = ExtResource("3_cybew")
+[node name="Soil" type="Sprite2D" parent="Ground"]
+texture_repeat = 2
+position = Vector2(637, 523)
+texture = ExtResource("2_tfonv")
+region_enabled = true
+region_rect = Rect2(-1191, -660, 4671, 2533)
 
-[node name="Car" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(535, 433)
-scale = Vector2(0.992696, 1.00461)
-texture = ExtResource("2_mmuhp")
+[node name="Decoration" type="Sprite2D" parent="Ground"]
+modulate = Color(0.85098, 0.572549, 0.584314, 0.478431)
+position = Vector2(237, 827)
+scale = Vector2(0.514311, 0.514311)
+texture = ExtResource("3_sn2uk")
+region_rect = Rect2(-74, -118, 650, 699)
+
+[node name="Moss1" type="Sprite2D" parent="Ground"]
+position = Vector2(1113, 1534)
+texture = ExtResource("4_vgmvm")
+
+[node name="Moss3" type="Sprite2D" parent="Ground"]
+position = Vector2(-322, 1623)
+texture = ExtResource("5_geevg")
+
+[node name="Moss2" type="Sprite2D" parent="Ground"]
+position = Vector2(-837, 1312)
+texture = ExtResource("6_jtdqy")
+
+[node name="Moss4" type="Sprite2D" parent="Ground"]
+position = Vector2(1379, 531)
+texture = ExtResource("7_bo8gy")
+
+[node name="Moss5" type="Sprite2D" parent="Ground"]
+position = Vector2(1487, 950)
+texture = ExtResource("8_bgm27")
+
+[node name="Gate" parent="." instance=ExtResource("3_u10y8")]
+position = Vector2(553, -473)
 
 [node name="Player" parent="." instance=ExtResource("3_hqa2t")]
-position = Vector2(650, 28)
+position = Vector2(562, 551)
 
-[node name="Target" type="Sprite2D" parent="."]
-unique_name_in_owner = true
+[node name="Camera2D" type="Camera2D" parent="Player"]
+zoom = Vector2(0.5, 0.5)
 
-[node name="Billboard" parent="." instance=ExtResource("7_epvh6")]
-position = Vector2(172, 616)
-rotation = 0.47822
-scale = Vector2(0.992696, 1.00461)
+[node name="Projectiles" type="Node2D" parent="."]
 
-[node name="Drone" parent="." instance=ExtResource("8_5b3q3")]
-position = Vector2(123, 133)
-rotation = 0.47822
-scale = Vector2(0.992696, 1.00461)
-
-[node name="Gate" type="StaticBody2D" parent="."]
-
-[node name="Gate" type="Sprite2D" parent="Gate"]
-position = Vector2(577, -1046)
-texture = ExtResource("9_bj5a5")
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Gate"]
-polygon = PackedVector2Array(1042, -406, 1054, -260, 1919, -254, 2021, -311, 2116, -400, 2129, -1847, -862, -1835, -836, -489, -766, -349, -665, -285, -576, -285, 205, -273, 218, -417)
-
-[node name="Area2D" type="Area2D" parent="Gate"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Gate/Area2D"]
-position = Vector2(628, -364.25)
-shape = SubResource("RectangleShape2D_uvnwn")
-
-[connection signal="body_entered" from="Gate/Area2D" to="." method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="Gate/Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="player_intered_gate" from="Gate" to="." method="_on_gate_player_intered_gate"]
+[connection signal="player_grenade" from="Player" to="." method="_on_player_player_grenade"]
+[connection signal="player_laser" from="Player" to="." method="_on_player_player_laser"]
