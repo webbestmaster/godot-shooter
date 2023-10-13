@@ -1,127 +1,28 @@
-[gd_scene load_steps=19 format=3 uid="uid://xyqg1sl0cice"]
+[gd_scene load_steps=4 format=3 uid="uid://xyqg1sl0cice"]
 
 [ext_resource type="Script" path="res://scenes/levels/level.gd" id="1_j7yls"]
-[ext_resource type="Texture2D" uid="uid://d282lml6y5i1y" path="res://resources/graphics/ground/stones.png" id="2_tfonv"]
+[ext_resource type="PackedScene" uid="uid://c8kgs2ql46vd5" path="res://scenes/user_interface/ui.tscn" id="3_gggkl"]
 [ext_resource type="PackedScene" uid="uid://dhjt6pnljuyep" path="res://scenes/player/player.tscn" id="3_hqa2t"]
-[ext_resource type="Texture2D" uid="uid://bqk6eh8xovjxu" path="res://resources/graphics/decals/dirt_patch.png" id="3_sn2uk"]
-[ext_resource type="PackedScene" uid="uid://ocvuhg6nqsqq" path="res://scenes/objects/gate.tscn" id="3_u10y8"]
-[ext_resource type="Texture2D" uid="uid://b5mokpoi67lih" path="res://resources/graphics/decals/moss/moss_1.png" id="4_vgmvm"]
-[ext_resource type="Texture2D" uid="uid://bitb3bs8uk0j4" path="res://resources/graphics/decals/moss/moss_3.png" id="5_geevg"]
-[ext_resource type="Texture2D" uid="uid://cq018rqavhelj" path="res://resources/graphics/decals/moss/moss_2.png" id="6_jtdqy"]
-[ext_resource type="Texture2D" uid="uid://posgcypptcm0" path="res://resources/graphics/decals/moss/moss_4.png" id="7_bo8gy"]
-[ext_resource type="Texture2D" uid="uid://b7fatsknewxt8" path="res://resources/graphics/decals/moss/moss_5.png" id="8_bgm27"]
-[ext_resource type="Texture2D" uid="uid://bpuepno4hg2lp" path="res://resources/graphics/tilesets/outside_walls.png" id="9_owngn"]
-[ext_resource type="Texture2D" uid="uid://bbl3fsov7pxeq" path="res://resources/graphics/tilesets/soil.png" id="10_1yjiu"]
-[ext_resource type="PackedScene" uid="uid://cqk8vceuxm6o2" path="res://scenes/houses/house.tscn" id="11_gsysj"]
-[ext_resource type="PackedScene" uid="uid://c55v268sh4qva" path="res://scenes/objects/steam_vent.tscn" id="12_0u418"]
-[ext_resource type="PackedScene" uid="uid://d4m82e70a35k" path="res://scenes/objects/light_fan_animation.tscn" id="13_0rw08"]
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_08u8t"]
-resource_name = "walls"
-texture = ExtResource("9_owngn")
-texture_region_size = Vector2i(390, 390)
-0:0/0 = 0
-1:0/0 = 0
-0:1/0 = 0
-1:1/0 = 0
-0:2/0 = 0
-1:2/0 = 0
-2:0/0 = 0
-2:1/0 = 0
-2:2/0 = 0
-0:3/0 = 0
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2wtwq"]
-texture = ExtResource("10_1yjiu")
-texture_region_size = Vector2i(390, 390)
-0:0/0 = 0
-1:0/0 = 0
-2:0/0 = 0
-0:1/0 = 0
-1:1/0 = 0
-2:1/0 = 0
-0:2/0 = 0
-1:2/0 = 0
-2:2/0 = 0
-
-[sub_resource type="TileSet" id="TileSet_uyh8m"]
-tile_size = Vector2i(390, 390)
-sources/0 = SubResource("TileSetAtlasSource_08u8t")
-sources/1 = SubResource("TileSetAtlasSource_2wtwq")
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_j7yls")
 
 [node name="Ground" type="Node2D" parent="."]
 
-[node name="Soil" type="Sprite2D" parent="Ground"]
-texture_repeat = 2
-position = Vector2(637, 523)
-texture = ExtResource("2_tfonv")
-region_enabled = true
-region_rect = Rect2(-20000, -20000, 20000, 20000)
+[node name="Items" type="Node2D" parent="."]
 
-[node name="Decoration" type="Sprite2D" parent="Ground"]
-modulate = Color(0.85098, 0.572549, 0.584314, 0.478431)
-position = Vector2(237, 827)
-scale = Vector2(0.514311, 0.514311)
-texture = ExtResource("3_sn2uk")
-region_rect = Rect2(-74, -118, 650, 699)
+[node name="Projectiles" type="Node2D" parent="."]
 
-[node name="Moss1" type="Sprite2D" parent="Ground"]
-position = Vector2(1113, 1534)
-texture = ExtResource("4_vgmvm")
-
-[node name="Moss3" type="Sprite2D" parent="Ground"]
-position = Vector2(-322, 1623)
-texture = ExtResource("5_geevg")
-
-[node name="Moss2" type="Sprite2D" parent="Ground"]
-position = Vector2(-837, 1312)
-texture = ExtResource("6_jtdqy")
-
-[node name="Moss4" type="Sprite2D" parent="Ground"]
-position = Vector2(1379, 531)
-texture = ExtResource("7_bo8gy")
-
-[node name="Moss5" type="Sprite2D" parent="Ground"]
-position = Vector2(1487, 950)
-texture = ExtResource("8_bgm27")
-
-[node name="TileMap" type="TileMap" parent="Ground"]
-position = Vector2(545, 200)
-tile_set = SubResource("TileSet_uyh8m")
-format = 2
-layer_0/name = "soil"
-layer_1/name = "wall"
-layer_1/enabled = true
-layer_1/modulate = Color(1, 1, 1, 1)
-layer_1/y_sort_enabled = false
-layer_1/y_sort_origin = 0
-layer_1/z_index = 0
-layer_1/tile_data = PackedInt32Array(131069, 0, 0, 131070, 65536, 0, 131071, 65536, 0, 65536, 65536, 0, 65537, 131072, 0, 196616, 65536, 1, 196617, 131072, 2, 131081, 131072, 1, 131080, 65536, 2, 65544, 0, 2, 8, 65536, 1, 9, 65536, 0, 10, 65536, 0, 11, 65536, 0, 12, 131072, 1, 65548, 0, 2, 131084, 0, 2, 262156, 0, 2, 196620, 0, 2, 327692, 131072, 2, 327691, 65536, 0, 327690, 65536, 0, 327689, 65536, 0, 327688, 65536, 0, 327687, 65536, 0, 327685, 65536, 0, 327686, 65536, 0, 262149, 65536, 0, 262148, 65536, 2, 196612, 0, 2, 131076, 0, 2, 65540, 65536, 1, 65541, 131072, 2, 5, 0, 2, -65531, 0, 2, -131067, 0, 2, -196603, 65536, 1, -196602, 65536, 0, -196601, 65536, 0, -196600, 65536, 0, -196599, 65536, 0, -196598, 65536, 0, -196597, 65536, 0, -196596, 65537, 1, -131062, 65536, 0, -131063, 65536, 0, -131065, 65536, 0, -131064, 65536, 0, -131061, 65536, 0, -131060, 65536, 0, -131066, 65536, 0, -65530, 65536, 0, -65529, 65536, 0, -65528, 65536, 0)
-
-[node name="House" parent="Ground" instance=ExtResource("11_gsysj")]
-position = Vector2(-2318, 2542)
-rotation = -2.45813
-
-[node name="SteamVent" parent="Ground" instance=ExtResource("12_0u418")]
-position = Vector2(250, 537)
-
-[node name="LightFanAnimation" parent="Ground" instance=ExtResource("13_0rw08")]
-position = Vector2(-1791, 1554)
-
-[node name="Gate" parent="." instance=ExtResource("3_u10y8")]
-position = Vector2(553, -473)
+[node name="Enemies" type="Node2D" parent="."]
 
 [node name="Player" parent="." instance=ExtResource("3_hqa2t")]
 position = Vector2(562, 551)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
-zoom = Vector2(0.5, 0.5)
+zoom = Vector2(0.6, 0.6)
 
-[node name="Projectiles" type="Node2D" parent="."]
+[node name="UI" parent="." instance=ExtResource("3_gggkl")]
 
-[connection signal="player_intered_gate" from="Gate" to="." method="_on_gate_player_intered_gate"]
 [connection signal="player_grenade" from="Player" to="." method="_on_player_player_grenade"]
 [connection signal="player_laser" from="Player" to="." method="_on_player_player_laser"]
+[connection signal="update_stats" from="Player" to="." method="_on_player_update_stats"]

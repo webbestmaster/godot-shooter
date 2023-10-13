@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://bclk3xkc5jpha"]
+
+[ext_resource type="Script" path="res://scenes/items/item.gd" id="1_dmmqq"]
+[ext_resource type="Texture2D" uid="uid://c0mc4aup66q5o" path="res://resources/graphics/items/orb2.png" id="1_xe2hi"]
+[ext_resource type="Texture2D" uid="uid://dyo5mvrvxwdd6" path="res://resources/graphics/lights/textures/circle.png" id="2_bjt2i"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5mo0i"]
+radius = 52.1536
+
+[node name="Item" type="Area2D"]
+collision_layer = 16
+script = ExtResource("1_dmmqq")
+
+[node name="Orb2" type="Sprite2D" parent="."]
+texture = ExtResource("1_xe2hi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_5mo0i")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+energy = 0.3
+texture = ExtResource("2_bjt2i")
+texture_scale = 0.5
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

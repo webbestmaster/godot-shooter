@@ -1,0 +1,148 @@
+[gd_scene load_steps=8 format=3 uid="uid://c8kgs2ql46vd5"]
+
+[ext_resource type="Texture2D" uid="uid://whhjdafueger" path="res://resources/graphics/ui/bullet.png" id="1_7v5gf"]
+[ext_resource type="Script" path="res://scenes/user_interface/ui.gd" id="1_8y2x5"]
+[ext_resource type="Theme" uid="uid://c33874uqq852e" path="res://scenes/user_interface/main_theme.tres" id="1_iqylq"]
+[ext_resource type="Texture2D" uid="uid://detc063vtjycp" path="res://resources/graphics/ui/grenade.png" id="2_laqhv"]
+[ext_resource type="Texture2D" uid="uid://fcfa5iqqg1bv" path="res://resources/graphics/ui/progress_bar/bg.png" id="4_0703t"]
+[ext_resource type="Texture2D" uid="uid://5kajpmfn1c70" path="res://resources/graphics/ui/progress_bar/over.png" id="5_2hqps"]
+[ext_resource type="Texture2D" uid="uid://cftbdppp04p2t" path="res://resources/graphics/ui/progress_bar/progress.png" id="6_y18aq"]
+
+[node name="UI" type="CanvasLayer"]
+script = ExtResource("1_8y2x5")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.615686, 0.6, 1, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 15
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "label 1"
+
+[node name="Label2" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "label 2"
+
+[node name="Label3" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "label 3"
+
+[node name="GridContainer" type="GridContainer" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.5
+offset_top = -43.0
+offset_right = 25.5
+offset_bottom = 43.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "label 1"
+
+[node name="Label2" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "label 2"
+
+[node name="Label3" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "label 3"
+
+[node name="LaserCounter" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -61.0
+offset_right = 58.0
+grow_vertical = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="LaserCounter"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -31.0
+offset_right = 9.075
+grow_vertical = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LaserCounter/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="LaserCounter/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+theme = ExtResource("1_iqylq")
+text = "20"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="LaserCounter/HBoxContainer/VBoxContainer"]
+modulate = Color(0, 0.635294, 0.529412, 1)
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+texture = ExtResource("1_7v5gf")
+expand_mode = 4
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="LaserCounter/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="LaserCounter/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme = ExtResource("1_iqylq")
+text = "200"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="LaserCounter/HBoxContainer/VBoxContainer2"]
+modulate = Color(0, 0.635294, 0.529412, 1)
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+texture = ExtResource("2_laqhv")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+custom_minimum_size = Vector2(200, 0)
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -150.0
+offset_top = -28.68
+offset_right = 150.0
+offset_bottom = -19.0
+grow_horizontal = 2
+grow_vertical = 0
+value = 50.0
+texture_under = ExtResource("4_0703t")
+texture_over = ExtResource("5_2hqps")
+texture_progress = ExtResource("6_y18aq")

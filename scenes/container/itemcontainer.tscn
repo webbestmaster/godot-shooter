@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://bce8yfc7bjcdk"]
+
+[ext_resource type="Script" path="res://scenes/container/itemcontainer.gd" id="1_k7x85"]
+
+[node name="Itemcontainer" type="StaticBody2D" groups=["Container"]]
+collision_layer = 4
+collision_mask = 11
+script = ExtResource("1_k7x85")
+
+[node name="BaseSprite" type="Sprite2D" parent="."]
+
+[node name="LidSprite" type="Sprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="SpownPositions" type="Node2D" parent="."]
